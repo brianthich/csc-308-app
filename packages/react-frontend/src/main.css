@@ -1,0 +1,12 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+body {
+  font-family: Cambria;
+  background-color: #121212;
+  color: #f1f1f1;
+  font-size: clamp(14px, 1.2vw, 18px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
