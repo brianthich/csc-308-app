@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "npm run dev --workspace=react-frontend",
+    "dev": "npm --workspace=react-frontend run dev ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
