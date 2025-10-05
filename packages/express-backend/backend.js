@@ -1,7 +1,9 @@
 import express from "express";
+import cors from "cors";
 
 const app = express();
 const port = 8000;
+app.use(cors());
 app.use(express.json());
 
 const users = {
@@ -51,9 +53,20 @@ const findUserByNameJob = (name, job) => {
 
 // User Changes
 const addUser = (user) => {
+  user.id = getRandomID();
   users["users_list"].push(user);
   return user;
 };
+
+function getRandomID() {
+  let letters = "";
+  let numbers = "";
+  for (let i = 0; i < 3; i++) {
+   letters += String.fromCharCode(Math.floor(Math.random() * 26) + 97);
+   numbers += Math.floor(Math.random() * 10);
+  }
+  return letters + numbers;
+} 
 
 // Get Resource Methods
 app.get("/users/:id", (req, res) => {
@@ -97,7 +110,7 @@ app.get("/", (req, res) => {
 app.post("/users", (req, res) => {
   const userToAdd = req.body;
   addUser(userToAdd);
-  res.send();
+  res.status(201).send();
 });
 
 app.delete("/users/:id", (req, res) => {
