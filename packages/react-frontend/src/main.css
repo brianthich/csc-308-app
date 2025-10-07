@@ -1,5 +1,11 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
 
+#cornertext {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+}
+
 body {
   font-family: Cambria;
   background-color: #121212;

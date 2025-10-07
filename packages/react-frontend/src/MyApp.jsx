@@ -19,11 +19,11 @@ function MyApp() {
     const promise = fetch(`http://localhost:8000/users/${id}`, {
       method: "DELETE",
     })
-      .then(() => {
-        const updated = characters.filter((character, i) => i !== index );
-        setCharacters(updated);
-
-        return promise;
+      .then((res) => {
+        if (res.status === 204) {
+          const updated = characters.filter((character, i) => i !== index);
+          setCharacters(updated);
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -33,9 +33,11 @@ function MyApp() {
 
   function updateList(person) {
     postUser(person)
-      .then(() => fetchUsers())
-      .then((res) => res.json())
-      .then((json) => setCharacters(json["users_list"]))
+      .then((newUser) => {
+        if (newUser) {
+          setCharacters([...characters, newUser]);
+        }
+      })
       .catch((error) => {
         console.log(error);
       });
@@ -53,7 +55,16 @@ function MyApp() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(person),
-    });
+    })
+      .then((res) => {
+        if (res.status !== 201) {
+          throw new Error("Could not create user");
+        }
+        return res.json();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
     return promise;
   }
