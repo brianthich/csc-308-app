@@ -1,0 +1,23 @@
+{
+  "name": "csc-308-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npm --workspace=react-frontend run dev ",
+    "backend": "npm --workspace=express-backend run dev",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "workspaces": [
+    "packages/*"
+  ],
+  "dependencies": {
+    "mongoose": "^8.19.1",
+    "vite": "^7.1.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
